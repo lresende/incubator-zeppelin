@@ -173,12 +173,17 @@ public class DepInterpreter extends Interpreter {
                                  getProperty("zeppelin.dep.additionalRemoteRepository"));
     if (isScala2_10()) {
       completor = instantiateClass(
-          "SparkJLineCompletion",
+          "org.apache.spark.repl.SparkJLineCompletion",
           new Class[]{findClass("org.apache.spark.repl.SparkIMain")},
           new Object[]{intp});
     }
     interpret("@transient var _binder = new java.util.HashMap[String, Object]()");
-    Map<String, Object> binder = (Map<String, Object>) getLastObject();
+    Map<String, Object> binder;
+    if (isScala2_10()) {
+      binder = (Map<String, Object>) getValue("_binder");
+    } else {
+      binder = (Map<String, Object>) getLastObject();
+    }
     binder.put("depc", depc);
 
     interpret("@transient val z = "
