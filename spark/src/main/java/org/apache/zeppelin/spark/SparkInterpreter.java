@@ -1121,7 +1121,7 @@ public class SparkInterpreter extends Interpreter {
   }
 
   // function works after intp is initialized
-  private boolean isScala2_10() {
+  boolean isScala2_10() {
     try {
       this.getClass().forName("org.apache.spark.repl.SparkIMain");
       return true;
@@ -1130,7 +1130,7 @@ public class SparkInterpreter extends Interpreter {
     }
   }
 
-  private boolean isScala2_11() {
+  boolean isScala2_11() {
     return !isScala2_10();
   }
 
