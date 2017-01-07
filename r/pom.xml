@@ -399,6 +399,17 @@
 
   <profiles>
     <profile>
+      <activation>
+        <os>
+          <family>Windows</family>
+        </os>
+      </activation>
+      <properties>
+      <script.extension>.cmd</script.extension>
+      <path.separator>\</path.separator>
+      </properties>
+    </profile>
+    <profile>
       <id>scala-2.10</id>
       <activation>
         <activeByDefault>true</activeByDefault>
